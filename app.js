@@ -1,3 +1,6 @@
+let humanScore = 0, computerScore = 0;
+
+
 // A function to get a random choice from the computer without using arrays
 function generateRandNum(a = 0, b = 2) {
   const rand = Math.floor(Math.random() * (b - a + 1)) + a;
@@ -14,3 +17,8 @@ function getComputerChoice() {
   return computerChoice;
 }
 
+
+function getUserChoice(){
+  const userChoice = prompt("Rock, paper, scissors? ");
+  return userChoice.toLowerCase();
+}
