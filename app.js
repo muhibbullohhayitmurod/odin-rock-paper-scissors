@@ -44,8 +44,4 @@ function playRound(humanChoice, computerChoice) {
   console.log(winner ? `${winner} wins!` : "It's a tie!");
 }
 
-for (let i = 0; i < 5; i++) {
-  console.log(`Round: ${i + 1}`);
-  playRound(getUserChoice(), getComputerChoice());
-  console.log(`Scores:\n\thuman: ${humanScore}\n\tcomputer: ${computerScore}`);
-}
+
