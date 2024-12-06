@@ -45,3 +45,14 @@ function playRound(humanChoice, computerChoice) {
 }
 
 
+
+
+const btns = document.querySelectorAll(".btn");
+
+btns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const computerChoice = getComputerChoice();
+    const humanChoice = btn.dataset.choice;
+    playRound(humanChoice, computerChoice);
+  })
+})
