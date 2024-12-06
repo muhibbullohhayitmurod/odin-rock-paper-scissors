@@ -22,6 +22,10 @@ function getUserChoice() {
   return userChoice.toLowerCase();
 }
 
+
+const userChoiceTxt = document.querySelector(".user-choice-txt");
+const computerChoiceTxt = document.querySelector(".computer-choice-txt");
+const roundWinnerTxt = document.querySelector(".round-winner-txt");
 function playRound(humanChoice, computerChoice) {
   let winner;
   if (computerChoice === "rock" && humanChoice === "scissors") {
@@ -39,13 +43,38 @@ function playRound(humanChoice, computerChoice) {
     winner = "User";
     humanScore++;
   }
-  console.log(`You chose: ${humanChoice}.`);
-  console.log(`Computer chose: ${computerChoice}.`);
-  console.log(winner ? `${winner} wins!` : "It's a tie!");
+  userChoiceTxt.textContent = `You chose: ${humanChoice}.`;
+  computerChoiceTxt.textContent = `Computer chose: ${computerChoice}.`;
+  roundWinnerTxt.textContent = winner ? `This round ${winner} wins!` : "It's a tie!";
+}
+
+const userScoreTxt = document.querySelector(".user-score");
+const computerScoreTxt = document.querySelector(".computer-score");
+
+// helper functions
+
+function updateScores() {
+  userScoreTxt.textContent = `${humanScore}`;
+  computerScoreTxt.textContent = `${computerScore}`;
 }
 
 
-
+const winnerTxt = document.querySelector(".winner-msg");
+function checkWinner() {
+  if (humanScore >= 5 || computerScore >= 5) {
+    let msg =
+      humanScore > computerScore ? "You win!" : "You lost, computer wins!";
+    msg += ` (${humanScore}:${computerScore})`;
+    winnerTxt.textContent = msg;
+    humanScore = 0;
+    computerScore = 0;
+    msg = '';
+    
+    userChoiceTxt.textContent = "";;
+    computerChoiceTxt.textContent = "";
+    roundWinnerTxt.textContent = "";
+  }
+}
 
 const btns = document.querySelectorAll(".btn");
 
@@ -54,5 +83,7 @@ btns.forEach((btn) => {
     const computerChoice = getComputerChoice();
     const humanChoice = btn.dataset.choice;
     playRound(humanChoice, computerChoice);
-  })
-})
+    checkWinner();
+    updateScores();
+  });
+});
